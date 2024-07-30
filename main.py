@@ -1,8 +1,9 @@
 def main():
     book_path = "books/frankentstein.txt"
     text = get_book_text(book_path)
-    print(get_words_in_book(book_path))
+    # print(get_words_in_book(book_path))
     # print(text)
+    print(count_characters(book_path))
 
 
 def get_book_text(path):
@@ -14,4 +15,21 @@ def get_words_in_book(path):
    words = text.split()
    words = len(words)
    return words
+
+def count_characters(path):
+    letters ="" 
+    text = get_book_text(path).lower()
+    # store will eventually be the dictionary that contains the return value
+    store = {} 
+    # makes a string that contains all of the unqiue strings
+    for x in range(0,len(text)):
+        if text[x] not in letters:
+            letters+=text[x]
+    letters = list(letters)
+    for x in letters:
+        lettercount = text.count(x)
+        store[x] = lettercount
+    return store
+ 
+
 main()
