@@ -1,10 +1,23 @@
+import os
 def main():
+    directory = "books/"
+    contents = os.listdir(directory)
     book_path = "books/frankentstein.txt"
     text = get_book_text(book_path)
-    # # print(get_words_in_book(book_path))
-    # # print(text)
-    # print(count_characters(book_path))
-    Print_A_Report(book_path)
+    print("Choose a book to analyze!")
+    count = 1
+    # iterate through the files and capatilize
+    for item in contents:
+        if(item !='.gitignore'):
+            print(f"{item.capitalize()} {count}")
+            count+=1
+    choice = int(input())
+    book_path =f"books/{(contents[choice-1])}"
+    print(Print_A_Report(book_path))
+            
+
+    
+    
 
 
 def get_book_text(path):
@@ -32,9 +45,10 @@ def count_characters(path):
         store[x] = lettercount
     return store
 def Print_A_Report(path):
-    print(f"--- Begin report of {path} ---")
+    print(f"--- report of {path} ---")
     print(f"{get_words_in_book(path)} words found in the document\n")
     dictionary = count_characters(path)
+    dictionary.pop("\n")
     for char ,count in dictionary.items():
         print(f"The '{char}' character was found {count} times")
 
